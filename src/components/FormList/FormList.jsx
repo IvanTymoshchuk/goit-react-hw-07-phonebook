@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { UserAddOutlined } from '@ant-design/icons';
 import { Form, Label, Input, Button, Span } from './FormList.styled';
 import { toast } from 'react-toastify';
+import { nanoid } from '@reduxjs/toolkit';
 import { notifyOptions } from '../notifyOptions/notifyOptions';
 import { useSelector, useDispatch } from 'react-redux';
 import { getVisibleContacts } from 'redux/selectors';
@@ -27,7 +28,7 @@ const FormList = () => {
       return;
     }
 
-    dispatch(addContact({ name, number }));
+    dispatch(addContact({ id: nanoid(), name, number }));
     setName('');
     setNumber('');
   };
