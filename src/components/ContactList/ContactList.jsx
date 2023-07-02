@@ -4,7 +4,7 @@ import { Button } from 'components/FormList/FormList.styled';
 import { UserDeleteOutlined } from '@ant-design/icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { getVisibleContacts } from 'redux/selectors';
-import { deleteContacts } from 'redux/contactsSlice';
+import { deleteContact } from 'redux/operations';
 
 const ContactList = () => {
   const contacts = useSelector(getVisibleContacts);
@@ -16,7 +16,7 @@ const ContactList = () => {
         <List key={id}>
           {name + ' : ' + number}
 
-          <Button type="button" onClick={() => dispatch(deleteContacts(id))}>
+          <Button type="button" onClick={() => dispatch(deleteContact(id))}>
             <UserDeleteOutlined />
           </Button>
         </List>
