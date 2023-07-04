@@ -1,12 +1,13 @@
-import { useState } from 'react';
-import { UserAddOutlined } from '@ant-design/icons';
-import { Form, Label, Input, Button, Span } from './FormList.styled';
+import { useState,useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { nanoid } from '@reduxjs/toolkit';
+import { UserAddOutlined } from '@ant-design/icons';
+import { Form, Label, Input, Button, Span } from './FormList.styled';
 import { notifyOptions } from '../notifyOptions/notifyOptions';
-import { useSelector, useDispatch } from 'react-redux';
 import { getVisibleContacts } from 'redux/selectors';
-import { addContact } from 'redux/operations';
+import { addContact,fetchAll } from 'redux/operations';
+
 
 const FormList = () => {
   const [name, setName] = useState('');
@@ -14,6 +15,10 @@ const FormList = () => {
 
   const contacts = useSelector(getVisibleContacts);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAll());
+  }, [dispatch]);
 
   const handleSubmit = event => {
     event.preventDefault();
